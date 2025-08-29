@@ -5,6 +5,7 @@ import { USER_EMAIL_KEY, USER_PASSWORD_KEY } from "./constants";
 import { CoursesList } from "./features/courses-list/courses-list";
 import { useSelector } from "react-redux";
 import type { RootState } from "./store";
+import { DialogModal } from "./features/video-modal/video-modal";
 
 export const App: FC = () => {
   const userEmail = localStorage.getItem(USER_EMAIL_KEY);
@@ -14,12 +15,11 @@ export const App: FC = () => {
     (state: RootState) => state.activeVideo.videoUrl
   );
 
-  console.log("---videoUrl", videoUrl);
-
   return (
     <>
       <CssBaseline />
       {userEmail && userPassword ? <CoursesList /> : <Login />}
+      {videoUrl && <DialogModal videoUrl={videoUrl} />}
     </>
   );
 };

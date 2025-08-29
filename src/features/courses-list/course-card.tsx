@@ -1,4 +1,5 @@
 import {
+  Box,
   Button,
   Card,
   CardActionArea,
@@ -16,10 +17,11 @@ type CourseCardProps = {
   title: string;
   description: string;
   videoUrl: string;
+  price: number;
 };
 
 export const CourseCard: FC<CourseCardProps> = (props) => {
-  const { description, preview, title, videoUrl } = props;
+  const { description, preview, title, videoUrl, price } = props;
 
   const dispatch = useDispatch();
 
@@ -56,9 +58,21 @@ export const CourseCard: FC<CourseCardProps> = (props) => {
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button size="small" color="primary">
-          Купити
-        </Button>
+        <Box
+          width="100%"
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Typography variant="body2" sx={{ mr: 10 }}>
+            {price}
+          </Typography>
+          <Button size="small" color="primary">
+            Купити
+          </Button>
+        </Box>
       </CardActions>
     </Card>
   );
