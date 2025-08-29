@@ -1,25 +1,30 @@
-import type { FC } from "react";
+import { useEffect, type FC } from "react";
 import { Login } from "./features/login/login";
 import { CssBaseline } from "@mui/material";
 import { USER_EMAIL_KEY, USER_PASSWORD_KEY } from "./constants";
 import { CoursesList } from "./features/courses-list/courses-list";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import type { RootState } from "./store";
-import { DialogModal } from "./features/video-modal/video-modal";
+import { setUser } from "./store/auth.slice";
+
+const userEmail = localStorage.getItem(USER_EMAIL_KEY);
+const userPassword = localStorage.getItem(USER_PASSWORD_KEY);
 
 export const App: FC = () => {
-  const userEmail = localStorage.getItem(USER_EMAIL_KEY);
-  const userPassword = localStorage.getItem(USER_PASSWORD_KEY);
+  const user = useSelector((state: RootState) => state.auth.user);
 
-  const videoUrl = useSelector(
-    (state: RootState) => state.activeVideo.videoUrl
-  );
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (userEmail && userPassword) {
+      dispatch(setUser(userEmail));
+    }
+  });
 
   return (
     <>
       <CssBaseline />
-      {userEmail && userPassword ? <CoursesList /> : <Login />}
-      {videoUrl && <DialogModal videoUrl={videoUrl} />}
+      {user ? <CoursesList /> : <Login />}
     </>
   );
 };

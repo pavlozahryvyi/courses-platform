@@ -9,12 +9,16 @@ import {
 import { useState, type FC } from "react";
 import { USER_EMAIL_KEY, USER_PASSWORD_KEY } from "../../constants";
 import { validateEmail, validatePassword } from "./validators";
+import { setUser } from "../../store/auth.slice";
+import { useDispatch } from "react-redux";
 
 export const Login: FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
+
+  const dispatch = useDispatch();
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
@@ -38,6 +42,8 @@ export const Login: FC = () => {
 
     localStorage.setItem(USER_EMAIL_KEY, email);
     localStorage.setItem(USER_PASSWORD_KEY, password);
+
+    dispatch(setUser(email));
   };
 
   return (

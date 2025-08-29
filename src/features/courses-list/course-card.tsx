@@ -9,7 +9,7 @@ import {
   Typography,
 } from "@mui/material";
 import type { FC } from "react";
-import { setActiveVideo } from "../../store/active-video";
+import { setActiveVideo } from "../../store/active-video.slice";
 import { useDispatch } from "react-redux";
 
 type CourseCardProps = {

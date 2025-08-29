@@ -1,7 +1,7 @@
 import { Dialog, DialogContent, DialogTitle, IconButton } from "@mui/material";
 import { type FC } from "react";
 import CloseIcon from "@mui/icons-material/Close";
-import { clearActiveVideo } from "../../store/active-video";
+import { clearActiveVideo } from "../../store/active-video.slice";
 import { useDispatch } from "react-redux";
 
 type DialogModalType = {
