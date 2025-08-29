@@ -10,7 +10,7 @@ const initialState: AuthStateType = {
 };
 
 export const authSlice = createSlice({
-  name: "active-video",
+  name: "auth",
   initialState,
   reducers: {
     setUser: (state, action: PayloadAction<string>) => {

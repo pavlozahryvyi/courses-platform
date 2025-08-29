@@ -7,11 +7,11 @@ import { useDispatch, useSelector } from "react-redux";
 import type { RootState } from "./store";
 import { setUser } from "./store/auth.slice";
 
-const userEmail = localStorage.getItem(USER_EMAIL_KEY);
-const userPassword = localStorage.getItem(USER_PASSWORD_KEY);
-
 export const App: FC = () => {
   const user = useSelector((state: RootState) => state.auth.user);
+
+  const userEmail = localStorage.getItem(USER_EMAIL_KEY);
+  const userPassword = localStorage.getItem(USER_PASSWORD_KEY);
 
   const dispatch = useDispatch();
 

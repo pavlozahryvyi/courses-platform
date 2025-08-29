@@ -1,3 +1,5 @@
+import type { CourseEntity } from "./courses.model";
+
 const videos = [
   {
     videoUrl:
@@ -42,9 +44,11 @@ const videos = [
   },
 ];
 
-export const videosMockData = videos.map((videoItem, idx) => ({
-  ...videoItem,
-  id: idx,
-  title: `Title ${idx}`,
-  description: `Description ${idx}`,
-}));
+export const coursesMockData: Array<CourseEntity> = videos.map(
+  (videoItem, idx) => ({
+    ...videoItem,
+    id: idx,
+    title: `Title ${idx}`,
+    description: `Description ${idx}`,
+  })
+);
