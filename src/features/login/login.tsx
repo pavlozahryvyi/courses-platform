@@ -37,9 +37,6 @@ export const Login: FC = () => {
       return;
     }
 
-    console.log("Email:", email);
-    console.log("Password:", password);
-
     localStorage.setItem(USER_EMAIL_KEY, email);
     localStorage.setItem(USER_PASSWORD_KEY, password);
 

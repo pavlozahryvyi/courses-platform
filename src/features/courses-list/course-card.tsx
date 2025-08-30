@@ -50,7 +50,7 @@ export const CourseCard: FC<CourseCardProps> = (props) => {
     <Card
       elevation={3}
       sx={{
-        height: "100%",
+        height: "300px",
         display: "flex",
         flexDirection: "column",
         borderRadius: 2,

@@ -30,8 +30,6 @@ export const coursesApi = createApi({
               (course) => course.id === arg
             );
 
-            console.log("---queryFulfilled", queryFulfilled);
-
             dispatch(
               coursesSlice.actions.addCourse(selectedCourse as CourseEntity)
             );

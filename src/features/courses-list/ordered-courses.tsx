@@ -44,13 +44,7 @@ export const OrderedCourses: FC = () => {
               }
             >
               <ListItemAvatar>
-                <Avatar>
-                  {course.title
-                    .split(" ")
-                    .map((w) => w[0])
-                    .slice(0, 2)
-                    .join("")}
-                </Avatar>
+                <Avatar src={course.preview} />
               </ListItemAvatar>
               <ListItemText
                 primary={course.title}

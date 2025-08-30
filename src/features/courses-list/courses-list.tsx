@@ -1,4 +1,4 @@
-import { Box, Container } from "@mui/material";
+import { Box, Container, Toolbar } from "@mui/material";
 import { type FC } from "react";
 import { coursesMockData } from "../../api/courses.data";
 import { CourseCard } from "./course-card";
@@ -15,13 +15,17 @@ export const CoursesList: FC = () => {
 
   return (
     <>
-      <Header />
-      <Container sx={{ py: 6 }}>
-        <Box
+      <Box
+        sx={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}
+      >
+        <Header />
+        <Toolbar />
+        <Container
           sx={{
+            py: 6,
+            flex: 1,
             display: "flex",
             gap: 3,
-            flexDirection: { xs: "column", md: "row" }, // stack on mobile, row on desktop
           }}
         >
           <Box
@@ -31,6 +35,9 @@ export const CoursesList: FC = () => {
               gridTemplateColumns:
                 "repeat(auto-fill, minmax(min(200px, 100%), 1fr))",
               gap: 2,
+              gridAutoRows: 300,
+              alignItems: "stretch",
+              p: 1,
             }}
           >
             {coursesMockData.map((course) => (
@@ -41,8 +48,8 @@ export const CoursesList: FC = () => {
           <Box sx={{ flex: { xs: "1 1 100%", md: "0 0 20%" } }}>
             <OrderedCourses />
           </Box>
-        </Box>
-      </Container>
+        </Container>
+      </Box>
       {videoUrl && <DialogModal videoUrl={videoUrl} />}
     </>
   );
