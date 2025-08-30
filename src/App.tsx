@@ -6,6 +6,7 @@ import { CoursesList } from "./features/courses-list/courses-list";
 import { useDispatch, useSelector } from "react-redux";
 import type { RootState } from "./store";
 import { setUser } from "./store/auth.slice";
+import { Notification } from "./features/notification/notification";
 
 export const App: FC = () => {
   const user = useSelector((state: RootState) => state.auth.user);
@@ -25,6 +26,7 @@ export const App: FC = () => {
     <>
       <CssBaseline />
       {user ? <CoursesList /> : <Login />}
+      <Notification />
     </>
   );
 };

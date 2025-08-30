@@ -2,6 +2,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import type { CourseEntity } from "./courses.model";
 import { coursesMockData } from "./courses.data";
 import { coursesSlice } from "../store/courses.slice";
+import { notificationSlice } from "../store/notification.slice";
 
 export const coursesApi = createApi({
   reducerPath: "coursesApi",
@@ -11,7 +12,7 @@ export const coursesApi = createApi({
   endpoints: (build) => ({
     handlePurchase: build.mutation<CourseEntity, number>({
       query: (id) => ({
-        url: `posts/${id}`,
+        url: id === 3 ? "err" : `posts/${id}`,
         method: "PATCH",
         body: id,
       }),
@@ -22,14 +23,27 @@ export const coursesApi = createApi({
 
         return selectedCourse as CourseEntity;
       },
-      async onQueryStarted(arg, { dispatch }) {
-        const selectedCourse = coursesMockData.find(
-          (course) => course.id === arg
-        );
+      async onQueryStarted(arg, { dispatch, queryFulfilled }) {
+        queryFulfilled
+          .then(() => {
+            const selectedCourse = coursesMockData.find(
+              (course) => course.id === arg
+            );
 
-        dispatch(
-          coursesSlice.actions.addCourse(selectedCourse as CourseEntity)
-        );
+            console.log("---queryFulfilled", queryFulfilled);
+
+            dispatch(
+              coursesSlice.actions.addCourse(selectedCourse as CourseEntity)
+            );
+          })
+          .catch(() => {
+            dispatch(
+              notificationSlice.actions.setNotification({
+                message: "Some error",
+                severity: "error",
+              })
+            );
+          });
       },
     }),
   }),
