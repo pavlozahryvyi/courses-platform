@@ -1,12 +1,12 @@
 import { useEffect, type FC } from "react";
-import { Login } from "./features/login/login";
 import { CssBaseline } from "@mui/material";
 import { USER_EMAIL_KEY, USER_PASSWORD_KEY } from "./constants";
-import { CoursesList } from "./features/courses-list/courses-list";
 import { useDispatch, useSelector } from "react-redux";
 import type { RootState } from "./store";
 import { setUser } from "./store/auth.slice";
 import { Notification } from "./features/notification/notification";
+import { CourseList } from "./layouts/course-list";
+import { LoginLayout } from "./layouts/login";
 
 export const App: FC = () => {
   const user = useSelector((state: RootState) => state.auth.user);
@@ -25,7 +25,7 @@ export const App: FC = () => {
   return (
     <>
       <CssBaseline />
-      {user ? <CoursesList /> : <Login />}
+      {user ? <CourseList /> : <LoginLayout />}
       <Notification />
     </>
   );

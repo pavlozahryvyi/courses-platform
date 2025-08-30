@@ -1,14 +1,14 @@
 import { Box, Container, Toolbar } from "@mui/material";
 import { type FC } from "react";
-import { coursesMockData } from "../../api/courses.data";
-import { CourseCard } from "./course-card";
-import { Header } from "./app-bar";
+import { coursesMockData } from "../api/courses.data";
+import { CourseCard } from "../features/courses/course-card";
+import { OrderedCourses } from "../features/courses/ordered-courses";
+import { DialogModal } from "../features/video-modal/video-modal";
+import { Header } from "../features/app-bar/app-bar";
+import type { RootState } from "../store";
 import { useSelector } from "react-redux";
-import type { RootState } from "../../store";
-import { DialogModal } from "../video-modal/video-modal";
-import { OrderedCourses } from "./ordered-courses";
 
-export const CoursesList: FC = () => {
+export const CourseList: FC = () => {
   const videoUrl = useSelector(
     (state: RootState) => state.activeVideo.videoUrl
   );
