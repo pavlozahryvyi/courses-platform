@@ -38,6 +38,8 @@ export const CourseList: FC = () => {
               gridAutoRows: 300,
               alignItems: "stretch",
               p: 1,
+              height: "calc(100vh - 160px)",
+              overflowY: "auto",
             }}
           >
             {coursesMockData.map((course) => (
