@@ -26,6 +26,7 @@ export const CourseList: FC = () => {
             flex: 1,
             display: "flex",
             gap: 3,
+            flexDirection: { xs: "column-reverse", md: "row" },
           }}
         >
           <Box
